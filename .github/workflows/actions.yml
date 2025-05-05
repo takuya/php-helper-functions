@@ -47,4 +47,4 @@ jobs:
           var_dump(Takuya\Helpers\Array\array_last([1,2]));
           EOS
           cat sample.php
-          php sample.ph
+          php sample.php
