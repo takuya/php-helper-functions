@@ -38,9 +38,8 @@ jobs:
           php -v
           name='php-helper-functions'
           composer config repositories.$name \
-          vcs https://github.com/takuya/$name
-          composer require takuya/$name:master
-          composer install
+          vcs https://github.com/takuya/${name}
+          composer require takuya/$name
           cat <<'EOS' > sample.php
           <?php
           require_once 'vendor/autoload.php';

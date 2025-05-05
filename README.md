@@ -8,8 +8,7 @@
 name='php-helper-functions'
 composer config repositories.$name \
 vcs https://github.com/takuya/$name  
-composer require takuya/$name:master
-composer install
+composer require takuya/$name
 ```
 
 # 関数を増やすとき
