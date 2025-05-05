@@ -5,7 +5,8 @@ namespace Takuya\Helpers\String;
 if ( !function_exists( __NAMESPACE__.'\\csplit' ) ) {
   /**
    * shortcut to explode.
-   * explode($delim, $str) is awful.explode() should be `explode($str, $delim=',')`;
+   * explode($delim, $str) is awful style.
+   * explode() should be `explode($str, $delim=',')`;
    * preg_split is bad. preg_split should be `preg_split($str,$regex='/,/')`
    * `split(str)` is best, but split replaced to preg_split.
    *
