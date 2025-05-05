@@ -15,7 +15,10 @@ composer install
 # 関数を増やすとき
 
 ```shell
-touch src/helpers/Array/array_sample.php
+php src/bin/gen_func.php Array array_first;
+```
+### テスト作成
+```shell
 php tests/gen_tests.php
 ```
 
@@ -24,4 +27,5 @@ paratest が速くていい。
 ```shell
 vendor/bin/paratest
 ```
+
 
