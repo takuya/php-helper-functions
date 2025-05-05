@@ -37,6 +37,7 @@ jobs:
         run: |
           php -v
           name='php-helper-functions'
+          composer require takuya/php-proc_open-wrapper
           composer config repositories.$name \
           vcs https://github.com/takuya/${name}
           composer require takuya/$name
