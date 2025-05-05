@@ -39,7 +39,7 @@ function gen_namespace_info($file){
 }
 
 function createTestClasses () {
-  $ignores = ['helpers/helpers.php','helpers/dumper.php'];
+  $ignores = ['helpers/helpers.php','helpers/dumpers.php'];
   $ns = ((new ReflectionClass( TestCase::class ) )->getNamespaceName());
   $testdir = dirname( ( new ReflectionClass( TestCase::class ) )->getFileName() );
   $files = array_map( fn( $f ) => $testdir.'/Units/'.to_test_name( $f ), list_helper_files( $ignores ) );
