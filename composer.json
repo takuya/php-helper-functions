@@ -1,0 +1,30 @@
+{
+  "name": "takuya/php-helper-functions",
+  "description": "php helper functions",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "Takuya\\Helpers\\": "src/"
+    },
+    "files": [
+      "src/helpers/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Takuya\\Tests\\": "tests/",
+      "Takuya\\Tests\\Units\\": "tests/Units/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^12.1",
+    "brianium/paratest": "^7.10"
+  },
+  "authors": [
+    {
+      "name": "takuya",
+      "email": "55338+takuya@users.noreply.github.com"
+    }
+  ]
+}
