@@ -15,8 +15,6 @@ if ( !function_exists( __NAMESPACE__.'\\openssl_equiv_encrypt' ) ) {
   function openssl_equiv_encrypt ( string $data, string $pass, int $iter = 1000*1000,
                                    string $cipher = "AES-256-CBC" ): bool|string {
     $salt_len = 8;
-    $plain_str = file_exists( $data ) ? file_get_contents( $data ) : $data;
-    $strong = null;
     do {
       $salt = openssl_random_pseudo_bytes( $salt_len, $strong );
     } while ( empty( $strong ) );
@@ -26,11 +24,11 @@ if ( !function_exists( __NAMESPACE__.'\\openssl_equiv_encrypt' ) ) {
     $key = substr( $key_and_iv, 0, $key_len );
     $iv = substr( $key_and_iv, $key_len, $iv_len );
     
-    $enc_str = openssl_encrypt( $plain_str, $cipher, $key, OPENSSL_RAW_DATA, $iv );
-    if( $enc_str === false ) {
+    $enc_str = openssl_encrypt( file_exists( $data ) ? file_get_contents( $data ) : $data, $cipher, $key, OPENSSL_RAW_DATA, $iv );
+    if ( $enc_str === false ) {
       throw new \RuntimeException( 'Unable to encrypt data' );
     }
     $enc_str = 'Salted__'.$salt.$enc_str;
-    return chunk_split(base64_encode( $enc_str ),64);
+    return chunk_split( base64_encode( $enc_str ), 64 );
   }
 }
