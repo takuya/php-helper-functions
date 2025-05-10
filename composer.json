@@ -23,9 +23,9 @@
   },
   "archive": {
     "exclude": [
-      "/tests",
-      "/.github",
-      "/.idea"
+      "/tests/",
+      "/.github/",
+      "/.idea/"
     ]
   },
   "authors": [
