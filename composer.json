@@ -9,6 +9,9 @@
     },
     "files": [
       "src/helpers/helpers.php"
+    ],
+    "exclude-from-classmap": [
+      "/tests/"
     ]
   },
   "autoload-dev": {
