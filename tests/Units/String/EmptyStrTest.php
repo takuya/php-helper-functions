@@ -23,5 +23,8 @@ class EmptyStrTest extends TestCase {
     $this->assertEquals( false, empty_str( true ) );
     $this->assertEquals( true, empty_str( false ) );
     $this->assertEquals( true, empty_str( null ) );
+    // 空配列も受け取る。
+    $this->assertEquals( true, empty_str( [] ) );
+    
   }
 }

@@ -7,7 +7,7 @@ if ( !function_exists( __NAMESPACE__.'\\empty_str' ) ) {
    * @param $str
    * @return bool
    */
-  function empty_str ( ?string $str ): bool {
+  function empty_str ( $str ): bool {
     is_numeric( $str ) && $str = (string)$str;
     //empty('0') のかわりの関数なので、string 以外は empty() で返す。
     if ( !is_string( $str ) ) return empty( $str );
