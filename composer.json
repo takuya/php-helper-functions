@@ -21,6 +21,13 @@
     "phpunit/phpunit": "^12.1",
     "brianium/paratest": "^7.10"
   },
+  "archive": {
+    "exclude": [
+      "/tests",
+      "/.github",
+      "/.idea"
+    ]
+  },
   "authors": [
     {
       "name": "takuya",
