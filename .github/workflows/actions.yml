@@ -20,7 +20,7 @@ jobs:
       - name : phpunit
         shell: bash
         run : |
-          vendor/bin/phpunit
+          vendor/bin/paratest
       - name : log
         shell: bash
         run : |
