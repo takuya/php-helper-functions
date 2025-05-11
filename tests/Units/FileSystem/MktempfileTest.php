@@ -5,6 +5,7 @@ namespace Takuya\Tests\Units\FileSystem;
 use Takuya\Tests\TestCase;
 use function Takuya\Helpers\FileSystem\mktempfile;
 use function Takuya\Helpers\FileSystem\mktempdir;
+use function Takuya\Helpers\FileSystem\get_extension;
 
 class MktempfileTest extends TestCase {
   public function test_mktempfile () {
@@ -16,14 +17,20 @@ class MktempfileTest extends TestCase {
   }
   
   public function test_mktempfile_in_sub_dir () {
-    $fname = mktempfile( 'php-tmp-file-'.( $id = uniqid() ),use_sub_dir: true );
+    $fname = mktempfile( 'php-tmp-file-'.( $id = uniqid() ), use_sub_dir: true );
     $this->assertTrue( is_file( $fname ) );
     $this->stringContains( 'php-tmp-file', $fname );
     $this->stringContains( $id, $fname );
     $this->stringContains( sys_get_temp_dir(), $fname );
-    $this->stringContains( 'php-tmp-file', dirname($fname) );
-    $this->stringContains( $id, dirname($fname) );
-    $this->stringContains( sys_get_temp_dir(), dirname($fname) );
+    $this->stringContains( 'php-tmp-file', dirname( $fname ) );
+    $this->stringContains( $id, dirname( $fname ) );
+    $this->stringContains( sys_get_temp_dir(), dirname( $fname ) );
+  }
+  
+  public function test_jpg_mktempfile () {
+    $this->assertEquals( '.jpg', get_extension( mktempfile( 'tmp', extension: 'jpg' ) ) );
+    $this->assertEquals( '.jpg', get_extension( mktempfile( '.temp', extension: 'jpg' ) ) );
+    $this->assertEquals( '.jpg', get_extension( mktempfile( '.temp..', extension: '.jpg' ) ) );
   }
   
   public function test_ensure_removed_of_mktempfile () {
@@ -35,6 +42,7 @@ class MktempfileTest extends TestCase {
     );
     $this->assertFalse( file_exists( $dir ) );
   }
+  
   public function test_ensure_removed_of_mktempfile_in_sub_dir () {
     $dir = $this->run_php_script_body( <<<EOS
     //
@@ -43,6 +51,6 @@ class MktempfileTest extends TestCase {
     EOS
     );
     $this->assertFalse( file_exists( $dir ) );
-    $this->assertFalse( file_exists( dirname($dir) ) );
+    $this->assertFalse( file_exists( dirname( $dir ) ) );
   }
 }

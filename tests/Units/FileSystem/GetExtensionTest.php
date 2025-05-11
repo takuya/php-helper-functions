@@ -1,7 +1,7 @@
 <?php
-namespace Takuya\Tests\Units\String;
+namespace FileSystem;
 use Takuya\Tests\TestCase;
-use function Takuya\Helpers\String\get_extension;
+use function Takuya\Helpers\FileSystem\get_extension;
 
 class GetExtensionTest extends TestCase{
   public function test_get_extension(){

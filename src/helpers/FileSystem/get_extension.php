@@ -1,5 +1,5 @@
 <?php
-namespace Takuya\Helpers\String;
+namespace Takuya\Helpers\FileSystem;
 if ( !function_exists( __NAMESPACE__.'\\get_extension' ) ) {
   function get_extension ( $f_name, $include_dot = true ): ?string {
     if ( $pos = strrpos( $f_name, '.' ) ) {
