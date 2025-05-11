@@ -11,16 +11,23 @@ if ( !function_exists( __NAMESPACE__.'\\mktempfile' ) ) {
    * @return string path to tmpdir.
    */
   
-  function mktempfile ( string $prefix = 'php-mktempfile', bool $auto_remove = true, $use_sub_dir = false ): string {
+  function mktempfile (
+    string $prefix = 'php-mktempfile',
+    string $extension = '.tmp',
+    bool   $auto_remove = true,
+    bool   $use_sub_dir = false
+  ): string {
+    //
+    $extension = '.'.ltrim( $extension, '.' );
+    $prefix = trim($prefix,DIRECTORY_SEPARATOR);
+    $name = $prefix.str_rand(8).$extension;
+    //
     if ( $use_sub_dir ) {
-      touch( $tmpname = mktempdir( $prefix, $auto_remove ).DIRECTORY_SEPARATOR.$prefix.str_rand() );
+      touch( $tmpname = mktempdir( $prefix, $auto_remove ).DIRECTORY_SEPARATOR.$name );
       return $tmpname;
     } else {
-      $temp_file = sys_get_temp_dir().DIRECTORY_SEPARATOR.$prefix.str_rand();
-      touch( $temp_file );
-      $auto_remove && register_shutdown_function( function() use ( $temp_file ) {
-        proc_open( ['rm', '-rf', $temp_file], [], $io );
-      } );
+      touch( $temp_file = sys_get_temp_dir().DIRECTORY_SEPARATOR.$name );
+      $auto_remove && register_shutdown_function( fn()=>file_exists( $temp_file ) && @unlink( $temp_file ));
       return $temp_file;
     }
   }
