@@ -17,6 +17,6 @@ if ( !function_exists( __NAMESPACE__.'\\csplit' ) ) {
   //
   //
   function csplit (string $str, string $delim=',',bool $trim=true):array{
-    return $trim ? array_filter(array_map('trim',explode($delim,$str),fn($e)=>!empty_str($e))):explode($delim,$str);
+    return $trim ? array_filter(array_map('trim',explode($delim,$str)),fn($e)=>!empty_str($e)):explode($delim,$str);
   }
 }
