@@ -5,6 +5,8 @@
          cacheDirectory=".phpunit.cache"
          executionOrder="depends,defects"
          colors="true"
+         stopOnFailure="true"
+         stopOnError="true"
          beStrictAboutOutputDuringTests="true"
          displayDetailsOnPhpunitDeprecations="true"
          failOnPhpunitDeprecation="true"
